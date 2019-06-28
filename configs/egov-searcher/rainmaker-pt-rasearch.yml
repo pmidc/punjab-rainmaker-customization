@@ -1,0 +1,28 @@
+SearchDefinitions:
+ moduleName: rainmaker-pt-rasearch-punjab
+ summary: Name search for punjab
+ version: 1.0.0
+ definitions:
+ - name: searchPropertyIDBypayername
+   query: 
+    baseQuery: |
+      select 
+       payername,payeraddress,collectiontype,collectedamount,payermobile
+      from egcl_receiptheader
+      $where 
+    groupBy:    
+    orderBy: 
+   searchParams:
+    condition: AND
+    params:
+    - name: tenantid
+      isMandatory: false
+      jsonPath: $.searchCriteria.tenantId
+    - name: PayerName
+      isMandatory: false
+      jsonPath: $.searchCriteria.payername
+      
+   output:
+    jsonFormat: {"ResponseInfo": {}}
+    outJsonPath: $.services
+    responseInfoPath: $.ResponseInfo
